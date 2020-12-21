@@ -1,0 +1,53 @@
+<body style="background-color:lightblue;">
+{% extends 'accounts/base.html' %}
+{% block title %}
+    <title>User Home Page</title>
+{% endblock %}
+{% block content %}
+<style>
+    #chead{
+    margin-bottom:10px;
+    }
+    #place-order{
+    margin-left:0px;
+    }
+</style>
+<h1 class="text-center text-primary bg-light" id="chead">{{customer.name}}'s Details...</h1>
+    {% include 'accounts/status.html' %}<br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="text-center text-primary">User Orders Page&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<span id="place-order"><a href="{% url 'customer_order2' customer.name %}" class="btn btn-sm btn-success">Place Order</a> </span></h3>
+                        <table class="table table-bordered table-striped table-hover table-sm">
+                            <thead>
+                                <tr class="bg-primary text-white">
+                                    <th>Customer Name</th>
+                                    <th>Product Name</th>
+                                    <th>Product Category</th>
+                                    <th>Product Price</th>
+                                    <th>Product Status</th>
+                                    <th>Product Ordered Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-secondary text-white">
+                            {% for order in orders %}
+                                <tr>
+                                    <td>{{order.customer.name}}</td>
+                                    <td>{{order.product.name}}</td>
+                                    <td>{{order.product.category}}</td>
+                                    <td>{{order.product.price}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td>{{order.created_date}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>

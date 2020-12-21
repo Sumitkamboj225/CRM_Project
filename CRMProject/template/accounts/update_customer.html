@@ -1,0 +1,23 @@
+{% extends 'accounts/base.html' %}
+<html lang="en">
+{% block title %}
+    <title>Update Customer</title>
+{% endblock %}
+{% block content %}
+<style>
+    form{
+    width:50%;
+    margin-left:20%;
+    margin-top:5%;
+    border:2px solid darkcyan;
+    border-radius:3%;
+    padding:5%;
+    }
+</style>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+    <input type="submit" class="btn btn-success" value="Update Customer">
+</form>
+{% endblock %}

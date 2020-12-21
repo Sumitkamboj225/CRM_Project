@@ -1,0 +1,48 @@
+{% extends 'accounts/base.html' %}
+<html lang="en">
+{% block title %}
+    <title>Product Home</title>
+{% endblock %}
+{% block content %}
+    <style>
+        body{
+        background-color:lightcyan;
+        }
+        .card{
+        background-color:cyan;
+        }
+    </style>
+    <h1 class="text-center text-white bg-primary" style="margin-top:5px;font-family:edwardian script ITC">Product Information..</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md">
+            <div class="card text-center text-white">
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr class="bg-success">
+                                <th>Product Name</th>
+                                <th>Product Price</th>
+                                <th>Product Created Date</th>
+                                <th>Product Category</th>
+                                <th>Product Description</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-secondary text-white">
+                            {% for product in products %}
+                            <tr>
+                                <td>{{product.name}}</td>
+                                <td>{{product.price}}</td>
+                                <td>{{product.created_date}}</td>
+                                <td>{{product.category}}</td>
+                                <td>{{product.description}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

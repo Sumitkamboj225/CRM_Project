@@ -1,0 +1,85 @@
+{% extends 'accounts/base.html' %}
+<html lang="en">
+{% block title %}
+    <title>Customer Home</title>
+{% endblock %}
+{% block content %}
+    <style>
+        .p1{
+        margin-top:-3%;
+        }
+        body{
+        background-color:lightcyan;
+        }
+        .card{
+        background-color:tomato;
+        }
+    </style>
+    <h1 class="text-center text-white bg-primary" style="margin-top:5px;font-family:edwardian script ITC">{{customer.name}} Customers Information</h1>
+    <div class="container-fluid" style="margin-top:5px;">
+        <div class="row">
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body bg-light">
+                        <a href="{% url 'delete_customer' customer.id %}" class="btn btn-outline-danger btn-block">Delete Customer</a><br/>
+                        <a href="{% url 'update_customer' customer.id %}" class="btn btn-outline-success btn-block">Update Customer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Customer Information</h4>
+                        <p class="p1"><b>Mobile:</b>&ensp;{{customer.mobile}}</p>
+                        <p class="p1"><b>Email:</b>&ensp;{{customer.email}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card text-center text-white bg-success">
+                    <div class="card-body">
+                        <h4 class="card-title">Total Orders</h4><hr/>
+                        <h4 class="card-title">{{total_orders}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div><br/>
+        <div class="row">
+            <div class="col-md">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h4 class="card-title text-white">Product Information</h4>
+                        <table class="table table-bordered table-striped table-hover table-sm">
+                            <thead>
+                                <tr class="bg-primary text-white">
+                                    <th>Customer Name</th>
+                                    <th>Product Name</th>
+                                    <th>Product Category</th>
+                                    <th>Product Price</th>
+                                    <th>Product Status</th>
+                                    <th>Product Ordered Date</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-secondary text-white">
+                            {% for order in orders %}
+                                <tr>
+                                    <td>{{order.customer.name}}</td>
+                                    <td>{{order.product.name}}</td>
+                                    <td>{{order.product.category}}</td>
+                                    <td>{{order.product.price}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td>{{order.created_date}}</td>
+                                    <td><a href="{% url 'update_product' order.product.id %}" class="btn btn-success btn-sm">Product Update</a></td>
+                                    <td><a href="{% url 'delete_product' order.product.id %}" class="btn btn-danger btn-sm">Product Delete</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
